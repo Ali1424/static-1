@@ -1,13 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Upload to AWS') {
             steps {
-                sh 'echo "Hello World"'
-                sh '''
-                    echo "Multiline steps"
-                    ls -lah
-                '''
+                withAWS(region:'us-east-1', credentials: AKIASRCXVIUT64CRZIOI) {
+                    s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'tamas-udacity-project-jenkins', path:'index.html')
+                }
             }
         }
     }
