@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Health check') {
             steps {
-                curl 'http://tamas-udacity-project-jenkins.s3-website.us-east-1.amazonaws.com'
+                sh 'curl http://tamas-udacity-project-jenkins.s3-website.us-east-1.amazonaws.com'
                 }
             }
     }
